@@ -2,7 +2,8 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.http import HttpResponse
-from models import Item
+from django.core.exceptions import ObjectDoesNotExist
+from MainApp.models import Item
 
 
 class user:
@@ -31,5 +32,13 @@ def about(request):
 
 
 def items(request):
-    items = Item.objects.all()
-    return render(request, "items.html", items)
+    items = list(Item.objects.values())
+    return render(request, "items.html", {"items":items})
+
+
+def item(request, id):
+    try:
+        item = Item.objects.get(id=id)
+    except ObjectDoesNotExist:
+        return HttpResponse(f'Товар с id={id} отсутствует')
+    return render(request, "item.html", {"item":item})

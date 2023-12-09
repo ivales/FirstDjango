@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{item.name}} {{item.brand}}</title>
+</head>
+<body>
+{% if item.count != 0 %}
+    {{item.name}} {{item.brand}}, количество: {{item.count}}
+{% else %}
+    {{item.name}} {{item.brand}}: товар отсутствует
+{% endif %}
+</body>
+</html>
