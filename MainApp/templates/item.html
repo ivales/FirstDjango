@@ -1,14 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{item.name}} {{item.brand}}</title>
-</head>
-<body>
-{% if item.count != 0 %}
-    {{item.name}} {{item.brand}}, количество: {{item.count}}
-{% else %}
-    {{item.name}} {{item.brand}}: товар отсутствует
-{% endif %}
-</body>
-</html>
+{% extends 'base.html' %}
+{% block title %}Товары{% endblock %}
+{% block content %}
+    <h1> {{ item.name }} </h1>
+    <span style=font-size:large> {{item.name}} {{item.brand}}</span> <br>
+    <span style=font-size:large> Количество: {{item.count | default:"Товар отсутствует"}} </span> <br><br><br><br>
+    {{item.description}} <br><br>
+    <span style=font-size:large> Доступные цвета</span> <br>
+<ul>
+    {% for color in colors %}
+    <span style="color:{{color.name}}"><li>{{color.name}}</li></span> <br>
+    {% endfor %}
+    </ul>
+{% endblock %}
+

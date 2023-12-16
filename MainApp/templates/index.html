@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Главная</title>
-</head>
-<body>
-<h1>Приветствую!</h1>
-Это главная страница сайта</br>
-<i>Сайт пока в разработке...</i>
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Главная{% endblock %}
+{% block content %}
+    <h1> Приветствую </h1>
+    <img width="50px" src="{% static 'django.svg'%}" alt="My name"><br>
+    Сайт пока в разработке...
+{% endblock %}

@@ -3,7 +3,7 @@ from django.shortcuts import render
 # Create your views here.
 from django.http import HttpResponse
 from django.core.exceptions import ObjectDoesNotExist
-from MainApp.models import Item
+from MainApp.models import Item, Color
 
 
 class user:
@@ -39,6 +39,9 @@ def items(request):
 def item(request, id):
     try:
         item = Item.objects.get(id=id)
+        colors = []
+        if item.colors:
+            colors = item.colors.values()
     except ObjectDoesNotExist:
         return HttpResponse(f'Товар с id={id} отсутствует')
-    return render(request, "item.html", {"item":item})
+    return render(request, "item.html", {"item": item, "colors": colors})

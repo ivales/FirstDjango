@@ -1,23 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Товары</title>
-</head>
-<body>
-<p><ol>
+{% extends 'base.html' %}
+{% block title %}Товары{% endblock %}</title>
+{% block content %}
+    <h2> Список товаров </h2>
+<ol>
 {% for item in items %}
-    {% if item.count == 0 %}
-        <li><a href = "/item/{{ item.id }}"> id: {{ item.id }} - {{ item.name }} {{item.brand}} : товар отсутствует</a></li>
-    {% else %}
-        <li><a href = "/item/{{ item.id }}"> id: {{ item.id }} - {{ item.name }} {{item.brand}} : {{ item.count }}</a></li>
-    {% endif %}
+        <item><a href ="{% url 'item-page' item.id %}"> id: {{ item.id }} - {{ item.name }} {{item.brand}}</a></item>
 {% endfor %}
-</ol></p>
-<a href="/index">Home</a>
-
-<a href="/index">Home</a>  — <a href="/items">Товары</a>
-
-
-</body>
-</html>
+</ol>
+{% endblock %}
